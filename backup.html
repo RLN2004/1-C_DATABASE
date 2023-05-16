@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1-C DATA</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+      width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      width: 100%;
+      background-color: #444;
+      color: #eee;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #eee;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: auto;
+      background-color: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #333;
+      color: #eee;
+    }
+
+    td button {
+      padding: 5px 10px;
+      background-color: #f44336;
+      color: #eee;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    td button.edit {
+      background-color: #4CAF50;
+    }
+
+    td button:hover {
+      background-color: #e53935;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #editName, #editPhone {
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>1-C DATA BASE</h1>
+  <form id="phonebook-form">
+    <label for="name">NAME</label>
+    <input type="text" id="name" name="name" placeholder="Enter name" required>
+
+    <label for="phone">PHONE NUMBER</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" pattern="[0-9]{10}" required>
+
+    <input type="submit" value="SUBMIT">
+
+        </form>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>PHONE NUMBER</th>
+                <th>OPTIONS</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+      const form = document.querySelector('form');
+      const tableBody = document.querySelector('tbody');
+      let editingRow = null;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+
+        if (!editingRow) {
+          const newRow = document.createElement('tr');
+          const nameCell = document.createElement('td');
+          nameCell.textContent = name;
+          const phoneCell = document.createElement('td');
+          phoneCell.textContent = phone;
+          const actionsCell = document.createElement('td');
+          const editBtn = document.createElement('button');
+                editBtn.textContent = 'Edit';
+      editBtn.classList.add('edit-btn');
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.classList.add('delete-btn');
+      actionsCell.append(editBtn);
+      actionsCell.append(deleteBtn);
+      newRow.append(nameCell, phoneCell, actionsCell);
+      tableBody.append(newRow);
+      editBtn.addEventListener('click', () => {
+        document.getElementById('name').value = nameCell.textContent;
+        document.getElementById('phone').value = phoneCell.textContent;
+        editingRow = newRow;
+      });
+      deleteBtn.addEventListener('click', () => {
+        newRow.remove();
+      });
+    } else {
+      editingRow.children[0].textContent = name;
+      editingRow.children[1].textContent = phone;
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      editingRow = null;
+    }
+  });
+    </script>
+</body>
+</html>
