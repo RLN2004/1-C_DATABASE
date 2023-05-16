@@ -1,0 +1,76 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+form input[type="text"],
+form input[type="tel"],
+form button[type="submit"] {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    color: #222;
+    background-color: #fff;
+}
+
+form input[type="tel"] {
+    width: 200px;
+}
+
+form button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+    margin-top: 50px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+/*td.actions {
+    display: flex;
+    justify-content: center;
+}*/
+
+td.actions button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+td.actions .edit {
+    background-color: red;
+}
+
+td.actions .delete {
+    background-color: red;
+}
